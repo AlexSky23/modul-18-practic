@@ -56,7 +56,6 @@ $files = scandir(UPLOAD_DIR);
 $files = array_filter($files, function($file){
     return !in_array($file, ['.', '..', '.gitkeep']);
 });
-
 ?>
 
 <!doctype html>
@@ -99,8 +98,8 @@ $files = array_filter($files, function($file){
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </form>
-                        <a href="<?php echo URL . '/file.php?name=' . $file; ?>" title="Просмотреть картинку">
-                            <img src="<?php echo URL . '/' . UPLOAD_DIR . '/' . $file; ?>"
+                        <a href="<?php echo 'file.php?name=' . $file; ?>" title="Просмотреть картинку">
+                            <img src="<?php echo UPLOAD_DIR . '/' . $file; ?>"
                             class="img-thumbnail" alt="<?php echo $file; ?>">
                         </a>
                     </div>

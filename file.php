@@ -15,13 +15,13 @@ if (!empty($_POST['comment'])) {
     if ($comment === '') {
         $err[] = 'Не введен комментарий!';
     }
-
+$a_arr = ["/r/n","/r","/n","//r","//n","//r//n"];
     //если нет ош., то записать комм.
     if (empty($err)) {
         
         $comment = strip_tags($comment);
-        $comment = str_replace(array(["/r/n", "/r", "/n", "//r", "//n", "//r//n"]), "<br/>", $comment);
-        $comment = $comment . ' : ' . date('d.m.Y H:i');
+        $comment = str_replace($a_arr, "<br/>", $comment);
+        $comment = date('d.m.Y H:i') . ' : ' . $comment;
 
         // Дозапись текста в файл
         file_put_contents($commentFilePath, $comment . "\n", FILE_APPEND);
@@ -65,7 +65,7 @@ $comments = file_exists($commentFilePath)
 
         <div class="row">
             <div class="col-12 col-sm-8 offset-sm-2">
-                <img src="<?php echo URL . '/' . UPLOAD_DIR . '/' . $imageFileName ?>" 
+                <img src="<?php echo UPLOAD_DIR . '/' . $imageFileName ?>" 
                 class="img-thumbnail mb-4" alt="<?php echo $imageFileName ?> ">
 
                 <h3>Комментарии</h3>
